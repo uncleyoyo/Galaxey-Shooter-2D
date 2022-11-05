@@ -1,26 +1,42 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] float _speed = 4; 
+    [SerializeField] int score;
+    [SerializeField] float _speed = 4;
 
-    // Start is called before the first frame update
+    Animator _anim;
+    Player _player;
+    BoxCollider2D _boxCollider2D;
+
     void Start()
     {
-        
+        _player = GameObject.Find("Player").GetComponent<Player>();
+        if (_player == null)
+        {
+            Debug.LogError("Player is NULL");
+        }
+
+        _anim = GetComponent<Animator>();
+        if (_anim == null)
+        {
+            Debug.LogError("Animator is NULL");
+        }
+        _boxCollider2D = GetComponent<BoxCollider2D>();
+        if (_boxCollider2D == null)
+        {
+            Debug.LogError("Boc Collder is NULL");
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.Translate(Vector2.left * _speed * Time.deltaTime);
-      
+
         if (transform.position.x < -11)
         {
             transform.position = new Vector2(11, Random.Range(-4f, 6f));
-        }   
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -29,18 +45,28 @@ public class Enemy : MonoBehaviour
         {
             Player player = other.transform.GetComponent<Player>();
 
-            if(player != null)
+            if (player != null)
             {
                 player.Damage();
             }
-            Destroy(gameObject);
+            _anim.SetTrigger("onEnemyDeath");
+            _speed = 0;
+            _boxCollider2D.enabled = false;
+            Destroy(gameObject, 2.8f);
         }
 
-        if (other.tag == "Laser" )
+        if (other.tag == "Wrench")
         {
             Destroy(other.gameObject);
-            Destroy(gameObject);
-        }
 
+            if (_player != null)
+            {
+                _player.AddScore(score);
+            }
+            _anim.SetTrigger("onEnemyDeath");
+            _speed = 0;
+            _boxCollider2D.enabled = false;
+            Destroy(gameObject, 2.8f);
+        }
     }
 }
