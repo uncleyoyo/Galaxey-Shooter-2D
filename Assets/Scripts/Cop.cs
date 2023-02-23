@@ -28,8 +28,8 @@ public class Cop : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Vector2.left * _speed * Time.deltaTime);
-        transform.position = new Vector2(11, Random.Range(-4f, 6f));
+        transform.Translate(Vector2.left * _speed * Time.deltaTime) ;
+        //transform.position = new Vector2(11, Random.Range(-4f, 6f));
         Destroy(gameObject, 10);
     }
 

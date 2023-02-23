@@ -3,7 +3,7 @@
 public class Wrench : MonoBehaviour
 {
     [SerializeField] float _speed = 8;
-
+    
     void Update()
     {
         transform.Rotate(Vector2.right * _speed);
