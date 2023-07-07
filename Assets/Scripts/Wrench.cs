@@ -10,8 +10,8 @@ public class Wrench : MonoBehaviour
         transform.Translate(Vector2.right * _speed * Time.deltaTime);
         if (transform.parent != null)
         {
-            Destroy(transform.parent.gameObject);
+            Destroy(transform.parent.gameObject, 4);
         }
-        Destroy(gameObject, 5);
+        Destroy(gameObject, 3);
     }
 }

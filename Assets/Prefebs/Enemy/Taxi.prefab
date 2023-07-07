@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 5667522992369193050}
   - component: {fileID: 4410955333445668820}
   - component: {fileID: 8027287073723862828}
-  - component: {fileID: 9175233301956581601}
   - component: {fileID: -2088318892371146651}
+  - component: {fileID: 6541816235624369774}
   m_Layer: 0
   m_Name: Taxi
   m_TagString: Enemy
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -872257045
+  m_SortingLayerID: -1480594761
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5436a697c0afce64ea36096204f8b6a8, type: 3}
@@ -152,20 +152,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &9175233301956581601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8561753138323715268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b154ec5894bfd3d42bb52c9deafd7912, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: 30
-  _speed: 3
 --- !u!82 &-2088318892371146651
 AudioSource:
   m_ObjectHideFlags: 0
@@ -262,3 +248,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6541816235624369774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8561753138323715268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9abaf6e60ddbd0343a22470701b8962c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _score: 90
+  _speed: 2
+  _amplitude: 0.4

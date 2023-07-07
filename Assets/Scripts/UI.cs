@@ -10,15 +10,16 @@ public class UI : MonoBehaviour
     [SerializeField] TMP_Text _gameOver;
     [SerializeField] TMP_Text _restart;
     [SerializeField] TMP_Text _scoreText;
-    [SerializeField] TMP_Text _startGameText;
+    [SerializeField] TMP_Text _waveText;
     [SerializeField] TMP_Text _sayingText;
     [SerializeField] TMP_Text _wrenchCountText;
+    [SerializeField] TMP_Text _eneimesRemaing;
     [SerializeField] Image _thusterDisplay;
     [SerializeField] GameObject[] _livesImg;
 
     void Start()
     {
-        _wrenchCountText.text = "x " + 15;
+        _wrenchCountText.text = "x " + 15 + "/" + "20";
         _scoreText.text = "Score: " + 0;
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
@@ -40,18 +41,23 @@ public class UI : MonoBehaviour
 
     public void UpdateWrenchCount(int wrenchCount)
     {
-        _wrenchCountText.text = "x " + wrenchCount;
+        _wrenchCountText.text = "x " + wrenchCount + "/" + "20";
     }
 
-    public void SartWave()
+    public void StartWave()
     {
-        StartCoroutine(StartWave());
+        StartCoroutine(StartWaveCO());
+    }
+
+    public void ChangeWaveNumber()
+    {
+        StartCoroutine(ChangeWaveNumberCo());
     }
 
     public void LoseLives(int currentLives)
     {
-       _livesImg[currentLives].gameObject.SetActive(false);
-       
+        _livesImg[currentLives].gameObject.SetActive(false);
+
         if (currentLives < 1)
         {
             _gameOver.gameObject.SetActive(true);
@@ -63,33 +69,47 @@ public class UI : MonoBehaviour
 
     public void AddLives(int currentLives)
     {
-         if (currentLives == 1)
+        if (currentLives == 1)
         {
             _livesImg[0].gameObject.SetActive(true);
-            Debug.Log(currentLives);
         }
         else if (currentLives == 2)
         {
             _livesImg[1].gameObject.SetActive(true);
-            Debug.Log(currentLives);
         }
         else if (currentLives == 3)
         {
             _livesImg[2].gameObject.SetActive(true);
         }
-         else if (currentLives > 3)
+        else if (currentLives > 3)
         {
             currentLives = 3;
-            Debug.Log(currentLives);
         }
     }
 
     public void UpdayteThusterDisplay(float currentAmount)
     {
         _thusterDisplay.fillAmount = currentAmount;
-        // create an enemy drop to refill thuster.
-        }
+    }
 
+    public void YouWinTheGamer()
+    {
+        StartCoroutine(YouWin());
+    }
+    IEnumerator YouWin()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+            _gameOver.gameObject.SetActive(true);
+            _gameOver.text = "You Win!!";
+            yield return new WaitForSeconds(0.5f);
+            _gameOver.text = "";
+            yield return new WaitForSeconds(0.5f);
+            _gameOver.text = "You Win!!";
+            _gameOver.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1);
+        }
+    }
 
     IEnumerator GameOverFlicker()
     {
@@ -107,13 +127,32 @@ public class UI : MonoBehaviour
             _restart.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1);
         }
     }
-    IEnumerator StartWave()
+
+    IEnumerator StartWaveCO()
     {
-        _startGameText.gameObject.SetActive(false);
         _sayingText.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
         _sayingText.gameObject.SetActive(false);
     }
+    IEnumerator ChangeWaveNumberCo()
+    {
+        int currrentwave = int.Parse(_waveText.text.Substring(5));
+        currrentwave++;
+        _waveText.gameObject.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
+        _waveText.gameObject.SetActive(false);
+        _waveText.text = "Wave: " + currrentwave.ToString();
+        yield return new WaitForSeconds(0.5f);
+        _waveText.gameObject.SetActive(true);
+
+        if (currrentwave == 10)
+        {
+            _waveText.gameObject.SetActive(false);
+            yield return new WaitForSeconds(0.5f);
+            _waveText.gameObject.SetActive(false);
+            _waveText.text = "Boss Time";
+            yield return new WaitForSeconds(0.5f);
+            _waveText.gameObject.SetActive(true);
+        }
+    }
 }
-
-

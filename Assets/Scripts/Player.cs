@@ -3,12 +3,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    SpawnManager _spawnManager;
+    
     UI _uiManager;
     CameraMover _cameraShake;
+    AudioSource _audioSource;
 
     [SerializeField] float _speed = 7;
-    [SerializeField] float thusterSpeed = 14;
+    [SerializeField] float _slowSpeed = 3;
+    [SerializeField] float _thusterSpeed = 14;
     [SerializeField] float _ThusterGauge = 1;
     [SerializeField] GameObject _wrench;
     [SerializeField] GameObject _tripleShot;
@@ -22,28 +24,24 @@ public class Player : MonoBehaviour
     [SerializeField] int _score = 0;
     [SerializeField] int _shields = 3;
     [SerializeField] int _wrenchCount = 15;
+    [SerializeField] int _enemieskilled;
 
-    [SerializeField] float duration = 1f;
+    [SerializeField] float _duration = 1f;
 
     [SerializeField] AudioClip _audioClip;
-    AudioSource _audioSource;
     [SerializeField] SpriteRenderer _sprite;
     [SerializeField] Sprite[] _spriteList;
 
     bool _isTripleShotOn = false;
     bool _isShieldsOn = false;
     bool _isRapidShotOn = false;
+    bool _isSlowSpeedOn = false;
+
     void Start()
     {
-        _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         _uiManager = GameObject.Find("Canvas").GetComponent<UI>();
         _cameraShake = GameObject.Find("Main Camera").GetComponent<CameraMover>();
         _audioSource = GetComponent<AudioSource>();
-
-        if (_spawnManager == null)
-        {
-            Debug.LogError("Spawn Manager is NULL");
-        }
 
         if (_uiManager == null)
         {
@@ -82,7 +80,7 @@ public class Player : MonoBehaviour
         {
             _uiManager.UpdayteThusterDisplay(_ThusterGauge);
             _ThusterGauge -= Time.deltaTime;   
-            transform.Translate(new Vector2(horizontal, vertical) * thusterSpeed * Time.deltaTime);
+            transform.Translate(new Vector2(horizontal, vertical) * _thusterSpeed * Time.deltaTime);
             _speedFlame.SetActive(true);
         }
         else
@@ -116,7 +114,7 @@ public class Player : MonoBehaviour
         _canFire = Time.time + _fireRate;
         if (_isTripleShotOn == true)
         {
-            Instantiate(_tripleShot, transform.position, Quaternion.identity);
+            Instantiate(_tripleShot, transform.position + new Vector3(1.3f, 0, 0), Quaternion.identity);
         }
         else if (_isRapidShotOn == true)
         {
@@ -150,10 +148,9 @@ public class Player : MonoBehaviour
         _uiManager.LoseLives(_lives);
         if (_lives < 1)
         {
-            _spawnManager.PlayerDied();
             Destroy(gameObject);
         }
-        StartCoroutine(_cameraShake.Mover(duration));
+        StartCoroutine(_cameraShake.Mover(_duration));
     }
     public void RetoreLife()
     {
@@ -165,6 +162,7 @@ public class Player : MonoBehaviour
         _score += points;
         _uiManager.UpdateScore(_score);
     }
+
     public void RemoveWreches()
     {
         _wrenchCount -= 1;
@@ -173,7 +171,9 @@ public class Player : MonoBehaviour
     public void AddWrenches()
     {
         _wrenchCount += 5;
-    }
+        if (_wrenchCount <= 20)
+            _wrenchCount = 20;
+    }   
 
     public void AddHealth()
     {
@@ -209,8 +209,21 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(5f);
         _isRapidShotOn = false;
         _fireRate = 0.5f;
-
     }
+
+    public void SlowDown()
+    {
+        _isSlowSpeedOn = true;
+        _speed = _slowSpeed;
+        StartCoroutine(SlowSpeedPower());
+    }
+    IEnumerator SlowSpeedPower()
+    {
+        yield return new WaitForSeconds(10f);
+        _isSlowSpeedOn = false;
+        _speed = 7; 
+    }
+
     public void Shields()
     {
         _isShieldsOn = true;
@@ -228,5 +241,16 @@ public class Player : MonoBehaviour
         {
             _sprite.sprite = _spriteList[0];
         }
+    }
+
+    public void AddFartPower()
+    {
+        _ThusterGauge++;
+        if (_ThusterGauge > 1)
+        {
+            _ThusterGauge = 1;
+
+        }
+        _uiManager.UpdayteThusterDisplay(_ThusterGauge);
     }
 }

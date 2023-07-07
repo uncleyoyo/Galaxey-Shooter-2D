@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 61281590037228592}
   - component: {fileID: 8307027962496168894}
   - component: {fileID: 2384663124194341702}
-  - component: {fileID: 3542744634000286859}
   - component: {fileID: 7309178619559291949}
+  - component: {fileID: -4376306450836075442}
   m_Layer: 0
   m_Name: Ambulance
   m_TagString: Enemy
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -872257045
+  m_SortingLayerID: -1480594761
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 74df8d54a53f31d429195b77dc92dc0c, type: 3}
@@ -152,20 +152,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3542744634000286859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4084716982562719918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b154ec5894bfd3d42bb52c9deafd7912, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: 70
-  _speed: 7
 --- !u!82 &7309178619559291949
 AudioSource:
   m_ObjectHideFlags: 0
@@ -262,3 +248,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-4376306450836075442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4084716982562719918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38d41b3a848444a41bc50fda217b73cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _score: 80
+  _speed: 8
+  _amplitude: 0.3
+  _circleRad: 2.5

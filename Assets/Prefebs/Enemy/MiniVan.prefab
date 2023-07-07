@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 2389226652124380623}
   - component: {fileID: 5961066441387434561}
   - component: {fileID: 65739564675228345}
-  - component: {fileID: 1214794092072301940}
   - component: {fileID: 8357537447505229194}
+  - component: {fileID: -4105791315105217238}
   m_Layer: 0
   m_Name: MiniVan
   m_TagString: Enemy
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -872257045
+  m_SortingLayerID: -1480594761
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bb172ecbee7486348b1098b9f623103e, type: 3}
@@ -152,20 +152,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1214794092072301940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1828003807114320209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b154ec5894bfd3d42bb52c9deafd7912, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: 60
-  _speed: 6
 --- !u!82 &8357537447505229194
 AudioSource:
   m_ObjectHideFlags: 0
@@ -262,3 +248,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-4105791315105217238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828003807114320209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 027a88a658ad00045a6a379efb378524, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _score: 50
+  _speed: 5
+  _dodgeSpeed: 10
+  _circleRad: 3.5
+  _amplitude: 0.3

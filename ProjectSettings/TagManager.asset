@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Wrench
   - Cop
+  - Powerup
   layers:
   - Default
   - TransparentFX
@@ -17,8 +18,8 @@ TagManager:
   - 
   - 
   - 'Post Processing '
-  - 
-  - 
+  - Player
+  - Wrench
   - 
   - 
   - 
@@ -46,6 +47,9 @@ TagManager:
     locked: 0
   - name: BG
     uniqueID: 1311133787
+    locked: 0
+  - name: Enemy
+    uniqueID: 2814372535
     locked: 0
   - name: Player
     uniqueID: 3422710251
