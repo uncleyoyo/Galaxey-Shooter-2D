@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] float _speed = 7;
     [SerializeField] float _slowSpeed = 3;
     [SerializeField] float _thusterSpeed = 14;
-    [SerializeField] float _ThusterGauge = 1;
+    [SerializeField] float _thusterGauge = 1;
     [SerializeField] GameObject _wrench;
     [SerializeField] GameObject _tripleShot;
     [SerializeField] GameObject _speedFlame;
@@ -76,10 +76,10 @@ public class Player : MonoBehaviour
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-        if (Input.GetKey(KeyCode.LeftShift) && _ThusterGauge > 0)
+        if (Input.GetKey(KeyCode.LeftShift) && _thusterGauge > 0)
         {
-            _uiManager.UpdayteThusterDisplay(_ThusterGauge);
-            _ThusterGauge -= Time.deltaTime;   
+            _uiManager.UpdayteThusterDisplay(_thusterGauge);
+            _thusterGauge -= Time.deltaTime;   
             transform.Translate(new Vector2(horizontal, vertical) * _thusterSpeed * Time.deltaTime);
             _speedFlame.SetActive(true);
         }
@@ -162,6 +162,10 @@ public class Player : MonoBehaviour
         _score += points;
         _uiManager.UpdateScore(_score);
     }
+    public void SetScore(int score)
+    {
+        _score = score; 
+    }
 
     public void RemoveWreches()
     {
@@ -171,7 +175,7 @@ public class Player : MonoBehaviour
     public void AddWrenches()
     {
         _wrenchCount += 5;
-        if (_wrenchCount <= 20)
+        if (_wrenchCount >= 20)
             _wrenchCount = 20;
     }   
 
@@ -245,12 +249,12 @@ public class Player : MonoBehaviour
 
     public void AddFartPower()
     {
-        _ThusterGauge++;
-        if (_ThusterGauge > 1)
+        _thusterGauge++;
+        if (_thusterGauge > 1)
         {
-            _ThusterGauge = 1;
+            _thusterGauge = 1;
 
         }
-        _uiManager.UpdayteThusterDisplay(_ThusterGauge);
+        _uiManager.UpdayteThusterDisplay(_thusterGauge);
     }
 }

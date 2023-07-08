@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UI : MonoBehaviour
 {
     GameManager _gameManager;
+    Player _player; 
 
     [SerializeField] TMP_Text _gameOver;
     [SerializeField] TMP_Text _restart;
@@ -22,10 +23,14 @@ public class UI : MonoBehaviour
         _wrenchCountText.text = "x " + 15 + "/" + "20";
         _scoreText.text = "Score: " + 0;
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-
         if (_gameManager == null)
         {
             Debug.LogError("gameManager is NULL");
+        }
+        _player = GameObject.Find("Player").GetComponent<Player>();
+        if (_player == null)
+        {
+            Debug.LogError("Player is NULL");
         }
     }
 
@@ -37,6 +42,7 @@ public class UI : MonoBehaviour
     public void ZeroScore()
     {
         _scoreText.text = "Score: " + 0;
+        _player.SetScore(0);
     }
 
     public void UpdateWrenchCount(int wrenchCount)

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 218820092}
   - component: {fileID: 218820093}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -872257045
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 0a0c9b024b5f3a349a06e145ca91a990, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -91,7 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 221394578}
   - component: {fileID: 221394579}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Flame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -872257045
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6404fbcf9a32d50468d6135093aaf13f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 6232685776431355853}
   - component: {fileID: 6656481855377185358}
   - component: {fileID: 309229854}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -872257045
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a4d8846c5433f674687ca1ad83b74e0c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -383,8 +383,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 7
-  thusterSpeed: 15
-  _ThusterGauge: 2
+  _slowSpeed: 3
+  _thusterSpeed: 14
+  _thusterGauge: 1
   _wrench: {fileID: 2947076567337163607, guid: 86783bf2f2476134cb89d87cc5e052ce, type: 3}
   _tripleShot: {fileID: 4150193153087482622, guid: 0a1de2d99f1111e46a5ea9eeca7bbdc5,
     type: 3}
@@ -393,10 +394,11 @@ MonoBehaviour:
   _fireRate: 0.5
   _fireRateIncrese: 0.25
   _lives: 3
-  _score: 15
+  _score: 0
   _shields: 3
   _wrenchCount: 15
-  duration: 1
+  _enemieskilled: 0
+  _duration: 1
   _audioClip: {fileID: 8300000, guid: e21f2d367f8a0f848bd56343305018f4, type: 3}
   _sprite: {fileID: 218820093}
   _spriteList:

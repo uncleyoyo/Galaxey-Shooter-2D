@@ -111,7 +111,7 @@ public class SpawnManager : MonoBehaviour
         while (_isAlive)
         {
             Vector2 posToSpawn = new Vector3(11f, Random.Range(-4f, 6f));
-            Instantiate(_powerups[Random.Range(0, _food.Length)], posToSpawn, Quaternion.identity);
+            Instantiate(_food[Random.Range(0, _food.Length)], posToSpawn, Quaternion.identity);
             yield return new WaitForSeconds(Random.Range(5, 8));
         }
     }
